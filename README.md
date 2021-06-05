@@ -1,5 +1,7 @@
 # team-creator
 
+Live: https://kirdar-team-creator.herokuapp.com/
+
 ## Project setup
 ```
 yarn install
