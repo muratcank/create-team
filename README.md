@@ -1,6 +1,9 @@
 # team-creator
 
-Live: https://kirdar-team-creator.herokuapp.com/
+Heroku: https://kirdar-team-creator.herokuapp.com/
+
+Netlify: https://kirdar-create-team.netlify.app/
+
 
 ## Project setup
 ```
