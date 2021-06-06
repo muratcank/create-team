@@ -56,6 +56,7 @@ export default {
 </script>
 
 <template>
+<v-app>
   <v-container fill-height fluid class="main">
     <v-row>
       <v-col>
@@ -123,6 +124,7 @@ export default {
       </v-col>
     </v-row>
   </v-container>
+  </v-app>
 </template>
 
 <style lang="scss" scoped>
