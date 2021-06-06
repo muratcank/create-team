@@ -35,10 +35,13 @@ export default {
         <template v-for="(player, index) in list">
           <v-chip
             id="chip"
+            :key="index"
             draggable
             outlined
             label
-            :key="index"
+            close
+            close-icon="mdi-close-outline"
+            @click:close="$emit('deletePlayer', player)"
           >
             {{ player.name }} - {{ player.power }}
           </v-chip>

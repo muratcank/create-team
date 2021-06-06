@@ -9,11 +9,6 @@ export default {
       type: String,
       required: true,
     },
-    totalPower: {
-      type: Number,
-      required: false,
-      default: 0,
-    },
     list: {
       type: Array,
       required: true,
@@ -25,6 +20,13 @@ export default {
     teamColor: {
       type: String,
       require: true,
+    },
+  },
+  computed: {
+    totalPower() {
+      return this.list
+        .map((item) => Number(item.power))
+        .reduce((a, b) => a + b, 0);
     },
   },
 };
@@ -45,10 +47,11 @@ export default {
           <v-row :key="index">
             <v-chip
               id="chip"
-              draggable
-              outlined
-              label
               :style="{ borderColor: teamColor }"
+              draggable outlined label
+              close
+              close-icon="mdi-close-outline"
+              @click:close="$emit('deletePlayer', player)"
             >
               {{ player.name }} - {{ player.power }}
             </v-chip>

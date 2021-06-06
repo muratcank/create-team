@@ -12,18 +12,6 @@ export default {
     team1: [],
     team2: [],
   }),
-  computed: {
-    team1TotalPower() {
-      return this.team1
-        .map((item) => Number(item.power))
-        .reduce((a, b) => a + b, 0);
-    },
-    team2TotalPower() {
-      return this.team2
-        .map((item) => Number(item.power))
-        .reduce((a, b) => a + b, 0);
-    },
-  },
   methods: {
     addPlayer() {
       if (!this.name.length) return;
@@ -47,6 +35,21 @@ export default {
       this.$nextTick(() => {
         this.$refs.nameRef.focus();
       });
+    },
+    deletePlayer(player) {
+      // Any suggestion for this method is welcome.
+      if (this.players.some((item) => item === player)) {
+        this.players = this.removePlayerFromList(this.players, player);
+      } else if (this.team1.some((item) => item === player)) {
+        this.team1 = this.removePlayerFromList(this.team1, player);
+      } else if (this.team2.some((item) => item === player)) {
+        this.team2 = this.removePlayerFromList(this.team2, player);
+      }
+    },
+    removePlayerFromList(list, player) {
+      list.splice(list.findIndex((item) => item === player), 1);
+
+      return list;
     },
   },
 };
@@ -89,7 +92,12 @@ export default {
 
     <v-row>
       <v-col>
-        <players-card title="Players" :list="players" group="players" />
+        <players-card
+          title="Players"
+          :list="players"
+          group="players"
+          @deletePlayer="deletePlayer"
+        />
       </v-col>
     </v-row>
 
@@ -97,20 +105,20 @@ export default {
       <v-col style="text-align: center">
         <team-card
           title="Team 1"
-          :totalPower="team1TotalPower"
           :list="team1"
           group="players"
           teamColor="blue"
+          @deletePlayer="deletePlayer"
         />
       </v-col>
 
       <v-col>
         <team-card
           title="Team 2"
-          :totalPower="team2TotalPower"
           :list="team2"
           group="players"
           teamColor="red"
+          @deletePlayer="deletePlayer"
         />
       </v-col>
     </v-row>
