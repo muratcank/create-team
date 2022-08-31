@@ -1,7 +1,5 @@
 # team-creator
 
-Heroku: https://kirdar-team-creator.herokuapp.com/
-
 Netlify: https://kirdar-create-team.netlify.app/
 
 
